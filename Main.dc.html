@@ -1,0 +1,582 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Chalo Campus</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&amp;family=DM+Sans:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0;background:#F6F5F1;font-family:'DM Sans',system-ui,sans-serif;color:#1D2230}
+a{color:#0E7561}a:hover{color:#0A5A4A}
+button,input{font-family:inherit}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #1D2230;outline-offset:2px}
+html{scroll-behavior:smooth}
+</style>
+</helmet>
+
+<div style="min-height:100%;background:#F6F5F1;font-family:'DM Sans',system-ui,sans-serif;color:#1D2230">
+
+<!-- NAV -->
+<header style="max-width:1120px;margin:0 auto;padding:20px 24px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;box-sizing:border-box">
+<div style="display:flex;align-items:center;gap:10px">
+<svg width="36" height="30" viewBox="0 0 36 30" fill="none" aria-hidden="true"><circle cx="13" cy="15" r="12" fill="{{accent}}"/><circle cx="23" cy="15" r="12" fill="#0E7561" fill-opacity="0.85"/></svg>
+<span style="font-family:'Bricolage Grotesque','DM Sans',system-ui,sans-serif;font-weight:800;font-size:26px;letter-spacing:-0.02em">chalo</span>
+</div>
+<nav style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 24px;font-size:16px;font-weight:500">
+<a href="#plans" style="color:#1D2230;text-decoration:none;padding:10px 0">Plans</a>
+<a href="#safety" style="color:#1D2230;text-decoration:none;padding:10px 0">Safety</a>
+<a href="#money" style="color:#1D2230;text-decoration:none;padding:10px 0">Bookings</a>
+<a href="#launch" style="display:inline-flex;align-items:center;min-height:44px;padding:0 20px;border-radius:999px;background:#1D2230;color:#FFFFFF;text-decoration:none;font-weight:700">Get on the list</a>
+</nav>
+</header>
+
+<!-- HERO -->
+<section style="max-width:1120px;margin:0 auto;padding:32px 24px 64px;display:flex;flex-wrap:wrap;gap:48px;align-items:flex-start;box-sizing:border-box">
+<div style="flex:1 1 440px;min-width:0;display:flex;flex-direction:column;gap:24px;padding-top:16px">
+<div style="align-self:flex-start;display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:#FFFFFF;border:1px solid #E3E0D6;font-size:14px;font-weight:500">
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="8" fill="#0E7561"/><path d="M4.5 8.3l2.2 2.2 4.8-4.8" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+Sample College, Bengaluru · students only
+</div>
+<h1 style="margin:0;font-family:'Bricolage Grotesque','DM Sans',system-ui,sans-serif;font-weight:800;font-size:clamp(40px,6vw,64px);line-height:1.04;letter-spacing:-0.025em;text-wrap:balance">Going out? Don't go <span style="background:#FFE08A;padding:0 10px;border-radius:10px">alone.</span></h1>
+<p style="margin:0;font-size:19px;line-height:1.55;color:#4A4F5E;max-width:520px">Post a plan and find people from your college who'd come along. Chai, football, a café, a movie, a walk. It doesn't have to be an official event.</p>
+<div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+<a href="#plans" style="display:inline-flex;align-items:center;min-height:52px;padding:0 28px;border-radius:14px;background:{{accent}};color:#FFFFFF;font-weight:700;font-size:17px;text-decoration:none">Find a plan</a>
+<a href="#safety" style="display:inline-flex;align-items:center;min-height:52px;padding:0 20px;font-weight:700;font-size:17px;color:#1D2230">How we keep it safe</a>
+</div>
+<ul style="margin:8px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:10px 22px;font-size:15px;color:#4A4F5E">
+<sc-for list="{{ trust }}" as="t" hint-placeholder-count="3">
+<li style="display:flex;align-items:center;gap:8px">
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="8" fill="#0E7561"/><path d="M4.5 8.3l2.2 2.2 4.8-4.8" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+{{t.text}}
+</li>
+</sc-for>
+</ul>
+</div>
+
+<!-- CREATE A PLAN -->
+<div style="flex:1 1 400px;min-width:0;max-width:520px;background:#FFFFFF;border:1px solid #E3E0D6;border-radius:22px;padding:28px;display:flex;flex-direction:column;gap:20px;box-shadow:0 12px 36px rgba(29,34,48,0.08);box-sizing:border-box">
+<div style="display:flex;flex-direction:column;gap:4px">
+<h2 style="margin:0;font-family:'Bricolage Grotesque','DM Sans',system-ui,sans-serif;font-weight:800;font-size:26px;letter-spacing:-0.01em">Start a plan</h2>
+<p style="margin:0;font-size:15px;color:#4A4F5E">20 seconds. Only students from your college see it.</p>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:8px">
+<label for="plan-title" style="font-size:13px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;color:#4A4F5E">What's the plan?</label>
+<input id="plan-title" type="text" value="{{ titleValue }}" onInput="{{ onTitle }}" placeholder="Chai at 5? Anyone free?" style="min-height:48px;border-radius:12px;border:1px solid #CFCBC0;padding:0 14px;font-size:16px;color:#1D2230;background:#FFFFFF;box-sizing:border-box;width:100%">
+<sc-if value="{{ hasFormError }}" hint-placeholder-val="{{ false }}">
+<p role="alert" style="margin:0;font-size:14px;color:#B3261E;font-weight:500">{{formError}}</p>
+</sc-if>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:8px">
+<span style="font-size:13px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;color:#4A4F5E">Type</span>
+<div role="group" aria-label="Plan type" style="display:flex;flex-wrap:wrap;gap:8px">
+<sc-for list="{{ catChips }}" as="c" hint-placeholder-count="6">
+<button type="button" aria-pressed="{{c.on}}" onClick="{{ c.pick }}" style="min-height:44px;padding:0 16px;border-radius:999px;border:1px solid {{c.bd}};background:{{c.bg}};color:{{c.fg}};font-size:15px;font-weight:500;cursor:pointer">{{c.label}}</button>
+</sc-for>
+</div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:8px">
+<span style="font-size:13px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;color:#4A4F5E">When</span>
+<div role="group" aria-label="Plan time" style="display:flex;flex-wrap:wrap;gap:8px">
+<sc-for list="{{ timeChips }}" as="c" hint-placeholder-count="5">
+<button type="button" aria-pressed="{{c.on}}" onClick="{{ c.pick }}" style="min-height:44px;padding:0 16px;border-radius:999px;border:1px solid {{c.bd}};background:{{c.bg}};color:{{c.fg}};font-size:15px;font-weight:500;cursor:pointer">{{c.label}}</button>
+</sc-for>
+</div>
+<sc-if value="{{ lateOn }}" hint-placeholder-val="{{ false }}">
+<p style="margin:0;font-size:14px;line-height:1.5;color:#6B4A00;background:#FFF3D1;border-radius:10px;padding:10px 12px">Plans after 8 PM need a verified host. We'll ask you to confirm your phone number before this goes live.</p>
+</sc-if>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:8px">
+<span style="font-size:13px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;color:#4A4F5E">Where (public places only)</span>
+<div role="group" aria-label="Venue" style="display:flex;flex-wrap:wrap;gap:8px">
+<sc-for list="{{ venueChips }}" as="c" hint-placeholder-count="7">
+<button type="button" aria-pressed="{{c.on}}" onClick="{{ c.pick }}" style="min-height:44px;padding:0 16px;border-radius:999px;border:1px solid {{c.bd}};background:{{c.bg}};color:{{c.fg}};font-size:15px;font-weight:500;cursor:pointer">{{c.label}}</button>
+</sc-for>
+</div>
+<p style="margin:0;font-size:14px;color:#4A4F5E">You pick from a list of public venues. No private addresses.</p>
+</div>
+
+<div style="display:flex;flex-wrap:wrap;gap:20px 32px">
+<div style="display:flex;flex-direction:column;gap:8px">
+<span style="font-size:13px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;color:#4A4F5E">People who can join</span>
+<div style="display:flex;align-items:center;gap:12px">
+<button type="button" aria-label="Fewer spots" onClick="{{ spotsDown }}" style="width:44px;height:44px;border-radius:50%;border:1px solid #CFCBC0;background:#FFFFFF;font-size:22px;color:#1D2230;cursor:pointer">−</button>
+<span style="min-width:28px;text-align:center;font-size:20px;font-weight:700;font-variant-numeric:tabular-nums">{{form.spots}}</span>
+<button type="button" aria-label="More spots" onClick="{{ spotsUp }}" style="width:44px;height:44px;border-radius:50%;border:1px solid #CFCBC0;background:#FFFFFF;font-size:22px;color:#1D2230;cursor:pointer">+</button>
+</div>
+<p style="margin:0;font-size:14px;color:#4A4F5E">{{groupNote}}</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px;flex:1 1 200px;min-width:0">
+<span style="font-size:13px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;color:#4A4F5E">Cost per person</span>
+<div role="group" aria-label="Cost per person" style="display:flex;flex-wrap:wrap;gap:8px">
+<sc-for list="{{ costChips }}" as="c" hint-placeholder-count="4">
+<button type="button" aria-pressed="{{c.on}}" onClick="{{ c.pick }}" style="min-height:44px;padding:0 14px;border-radius:999px;border:1px solid {{c.bd}};background:{{c.bg}};color:{{c.fg}};font-size:15px;font-weight:500;cursor:pointer">{{c.label}}</button>
+</sc-for>
+</div>
+<p style="margin:0;font-size:14px;line-height:1.5;color:#4A4F5E">{{costNote}}</p>
+</div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:8px">
+<sc-for list="{{ toggles }}" as="t" hint-placeholder-count="2">
+<button type="button" aria-pressed="{{t.on}}" onClick="{{ t.flip }}" style="display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:56px;padding:8px 14px;border-radius:12px;border:1px solid #E3E0D6;background:#FBFAF7;text-align:left;cursor:pointer;color:#1D2230">
+<span style="display:flex;flex-direction:column;gap:2px;min-width:0"><span style="font-size:15px;font-weight:700">{{t.label}}</span><span style="font-size:13px;color:#4A4F5E">{{t.hint}}</span></span>
+<span style="position:relative;flex:none;width:44px;height:26px;border-radius:999px;background:{{t.track}}"><span style="position:absolute;top:3px;left:{{t.knob}};width:20px;height:20px;border-radius:50%;background:#FFFFFF"></span></span>
+</button>
+</sc-for>
+</div>
+
+<button type="button" onClick="{{ submitPlan }}" style="min-height:52px;border-radius:14px;border:0;background:{{accent}};color:#FFFFFF;font-size:17px;font-weight:700;cursor:pointer">Post my plan</button>
+</div>
+</section>
+
+<!-- PLANS FEED -->
+<section id="plans" style="max-width:1120px;margin:0 auto;padding:16px 24px 72px;display:flex;flex-direction:column;gap:28px;box-sizing:border-box">
+<div style="display:flex;flex-direction:column;gap:8px">
+<h2 style="margin:0;font-family:'Bricolage Grotesque','DM Sans',system-ui,sans-serif;font-weight:800;font-size:38px;letter-spacing:-0.02em">Plans on your campus</h2>
+<p style="margin:0;font-size:17px;color:#4A4F5E;max-width:640px">These plans and people are made up for this preview. Join one, or post your own above and watch it land at the top.</p>
+</div>
+<div role="group" aria-label="Filter plans" style="display:flex;flex-wrap:wrap;gap:8px">
+<sc-for list="{{ filters }}" as="c" hint-placeholder-count="8">
+<button type="button" aria-pressed="{{c.on}}" onClick="{{ c.pick }}" style="min-height:44px;padding:0 18px;border-radius:999px;border:1px solid {{c.bd}};background:{{c.bg}};color:{{c.fg}};font-size:15px;font-weight:500;cursor:pointer">{{c.label}}</button>
+</sc-for>
+</div>
+
+<sc-if value="{{ noPlans }}" hint-placeholder-val="{{ false }}">
+<p style="margin:0;padding:32px;border-radius:18px;background:#FFFFFF;border:1px dashed #CFCBC0;font-size:17px;color:#4A4F5E">Nothing here yet. Start the first one above.</p>
+</sc-if>
+
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;align-items:start">
+<sc-for list="{{ plans }}" as="item" hint-placeholder-count="6">
+<article style="min-width:0;background:#FFFFFF;border:1px solid #E3E0D6;border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:14px;box-sizing:border-box">
+<div style="display:flex;flex-wrap:wrap;align-items:center;gap:6px">
+<span style="padding:5px 12px;border-radius:999px;background:{{item.catBg}};font-size:13px;font-weight:700">{{item.cat}}</span>
+<sc-if value="{{ item.weekly }}" hint-placeholder-val="{{ false }}"><span style="padding:5px 12px;border-radius:999px;background:#EEF0F4;font-size:13px;font-weight:500">Repeats weekly</span></sc-if>
+<sc-if value="{{ item.women }}" hint-placeholder-val="{{ false }}"><span style="padding:5px 12px;border-radius:999px;background:#E4F0EB;color:#0A5A4A;font-size:13px;font-weight:700">Women-only</span></sc-if>
+<sc-if value="{{ item.approve }}" hint-placeholder-val="{{ false }}"><span style="padding:5px 12px;border-radius:999px;background:#EEF0F4;font-size:13px;font-weight:500">Host approves</span></sc-if>
+</div>
+<h3 style="margin:0;font-family:'Bricolage Grotesque','DM Sans',system-ui,sans-serif;font-weight:700;font-size:22px;line-height:1.2;letter-spacing:-0.01em;text-wrap:balance">{{item.title}}</h3>
+<div style="display:flex;flex-direction:column;gap:6px;font-size:15px;color:#3B4050">
+<div style="display:flex;align-items:center;gap:8px"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6.2" stroke="#5B6070" stroke-width="1.5"/><path d="M8 4.7V8l2.2 1.4" stroke="#5B6070" stroke-width="1.5" stroke-linecap="round"/></svg>{{item.when}}</div>
+<div style="display:flex;align-items:center;gap:8px"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 14.2s4.6-3.9 4.6-7.4A4.6 4.6 0 003.4 6.8C3.4 10.3 8 14.2 8 14.2z" stroke="#5B6070" stroke-width="1.5" stroke-linejoin="round"/><circle cx="8" cy="6.8" r="1.6" fill="#5B6070"/></svg><span>{{item.where}} <span style="color:#0A5A4A;font-weight:700">· public place</span></span></div>
+</div>
+<div style="display:flex;align-items:center;gap:10px;font-size:14px;color:#3B4050">
+<span style="flex:none;width:32px;height:32px;border-radius:50%;background:#EEF0F4;display:inline-flex;align-items:center;justify-content:center;font-weight:700">{{item.hostIni}}</span>
+<span style="min-width:0">Hosted by <strong>{{item.hostName}}</strong>, {{item.hostDept}}<br><span style="color:#0A5A4A;font-weight:700">Verified student</span> · {{item.hostRating}}</span>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+<div style="display:flex;align-items:center;padding-right:8px">
+<sc-for list="{{ item.avatars }}" as="a" hint-placeholder-count="3">
+<span style="width:30px;height:30px;margin-right:-8px;border-radius:50%;background:{{a.bg}};border:2px solid #FFFFFF;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;box-sizing:border-box">{{a.ini}}</span>
+</sc-for>
+</div>
+<span style="font-size:14px;font-weight:700;font-variant-numeric:tabular-nums">{{item.spotsText}}</span>
+</div>
+<div style="height:6px;border-radius:999px;background:#ECEAE3;overflow:hidden"><div style="height:6px;border-radius:999px;background:#0E7561;width:{{item.fillPct}}"></div></div>
+</div>
+<div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 12px;font-size:15px">
+<strong>{{item.priceText}}</strong>
+<sc-if value="{{ item.hasPrice }}" hint-placeholder-val="{{ false }}"><span style="font-size:13px;color:#4A4F5E">Held until the plan is confirmed</span></sc-if>
+</div>
+<sc-if value="{{ item.late }}" hint-placeholder-val="{{ false }}">
+<p style="margin:0;font-size:13px;color:#6B4A00;background:#FFF3D1;border-radius:10px;padding:8px 10px">Evening plan: this host is phone-verified.</p>
+</sc-if>
+<button type="button" aria-expanded="{{item.open}}" onClick="{{ item.toggleOpen }}" style="align-self:flex-start;min-height:44px;padding:0;border:0;background:transparent;color:#0A5A4A;font-size:15px;font-weight:700;cursor:pointer;text-decoration:underline">{{item.whoLabel}}</button>
+<sc-if value="{{ item.open }}" hint-placeholder-val="{{ false }}">
+<ul style="margin:0;padding:12px 14px;list-style:none;display:flex;flex-direction:column;gap:8px;background:#FBFAF7;border-radius:12px;font-size:14px">
+<sc-for list="{{ item.going }}" as="g" hint-placeholder-count="3">
+<li style="display:flex;justify-content:space-between;gap:12px"><span><strong>{{g.n}}</strong> · {{g.d}}</span><span style="color:#0A5A4A;font-weight:700">Verified</span></li>
+</sc-for>
+</ul>
+</sc-if>
+<button type="button" disabled="{{item.full}}" onClick="{{ item.onJoin }}" style="min-height:48px;border-radius:12px;border:1px solid {{item.btnBd}};background:{{item.btnBg}};color:{{item.btnFg}};font-size:16px;font-weight:700;cursor:{{item.cursor}}">{{item.btnLabel}}</button>
+<div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:4px 12px;font-size:13px;color:#4A4F5E">
+<span>{{item.joinNote}}</span>
+<sc-if value="{{ item.notReported }}" hint-placeholder-val="{{ true }}">
+<button type="button" onClick="{{ item.onReport }}" style="min-height:44px;padding:0 4px;border:0;background:transparent;color:#4A4F5E;font-size:13px;cursor:pointer;text-decoration:underline">Report this plan</button>
+</sc-if>
+<sc-if value="{{ item.reported }}" hint-placeholder-val="{{ false }}">
+<span style="color:#0A5A4A;font-weight:700">Reported. A person will review it.</span>
+</sc-if>
+</div>
+</article>
+</sc-for>
+</div>
+</section>
+
+<!-- SAFETY -->
+<section id="safety" style="background:#E4F0EB">
+<div style="max-width:1120px;margin:0 auto;padding:72px 24px;display:flex;flex-direction:column;gap:32px;box-sizing:border-box">
+<div style="display:flex;flex-direction:column;gap:8px">
+<h2 style="margin:0;font-family:'Bricolage Grotesque','DM Sans',system-ui,sans-serif;font-weight:800;font-size:38px;letter-spacing:-0.02em;max-width:720px;text-wrap:balance">Saying yes to strangers should feel easy</h2>
+<p style="margin:0;font-size:17px;color:#33423D;max-width:640px">One bad incident would end a campus app. So safety is part of every screen, from before you join to after you get home.</p>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;align-items:start">
+<sc-for list="{{ safety }}" as="col" hint-placeholder-count="3">
+<div style="min-width:0;background:#FFFFFF;border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:16px;box-sizing:border-box">
+<h3 style="margin:0;font-family:'Bricolage Grotesque','DM Sans',system-ui,sans-serif;font-weight:800;font-size:24px">{{col.title}}</h3>
+<ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px;font-size:16px;line-height:1.45">
+<sc-for list="{{ col.items }}" as="it" hint-placeholder-count="5">
+<li style="display:flex;gap:10px;align-items:flex-start"><svg style="flex:none;margin-top:3px" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="8" fill="#0E7561"/><path d="M4.5 8.3l2.2 2.2 4.8-4.8" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>{{it.t}}</span></li>
+</sc-for>
+</ul>
+</div>
+</sc-for>
+</div>
+</div>
+</section>
+
+<!-- BOOKINGS AND MONEY -->
+<section id="money" style="max-width:1120px;margin:0 auto;padding:72px 24px;display:flex;flex-wrap:wrap;gap:48px;align-items:flex-start;box-sizing:border-box">
+<div style="flex:1 1 440px;min-width:0;display:flex;flex-direction:column;gap:24px">
+<h2 style="margin:0;font-family:'Bricolage Grotesque','DM Sans',system-ui,sans-serif;font-weight:800;font-size:38px;letter-spacing:-0.02em;text-wrap:balance">Booking a turf or a table? Nobody fronts the money.</h2>
+<p style="margin:0;font-size:17px;line-height:1.55;color:#4A4F5E;max-width:540px">Hosts shouldn't have to chase friends for UPI. Everyone pays their share inside Chalo, and it stays on hold until the plan is confirmed. Chai, walks and other casual plans stay free, always.</p>
+<ol style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:14px">
+<sc-for list="{{ steps }}" as="st" hint-placeholder-count="4">
+<li style="display:flex;gap:14px;align-items:flex-start;font-size:16px;line-height:1.45">
+<span style="flex:none;width:30px;height:30px;border-radius:50%;background:#1D2230;color:#FFFFFF;display:inline-flex;align-items:center;justify-content:center;font-size:14px;font-weight:700">{{st.n}}</span>
+<span style="padding-top:4px">{{st.t}}</span>
+</li>
+</sc-for>
+</ol>
+<p style="margin:0;font-size:15px;color:#4A4F5E;max-width:540px">Chalo adds a small fee only when a booking goes through. Hosts who run plans every week get extras later, like better visibility and organiser tools.</p>
+</div>
+
+<div style="flex:1 1 360px;min-width:0;max-width:480px;background:#FFFFFF;border:1px solid #E3E0D6;border-radius:22px;padding:28px;display:flex;flex-direction:column;gap:20px;box-sizing:border-box">
+<div style="display:flex;flex-direction:column;gap:4px">
+<h3 style="margin:0;font-family:'Bricolage Grotesque','DM Sans',system-ui,sans-serif;font-weight:800;font-size:22px">Example: a 90-minute turf slot</h3>
+<p style="margin:0;font-size:14px;color:#4A4F5E">Sample prices. Try a different group size.</p>
+</div>
+<div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+<span style="font-size:15px;font-weight:500">People splitting it</span>
+<div style="display:flex;align-items:center;gap:12px">
+<button type="button" aria-label="Fewer people" onClick="{{ groupDown }}" style="width:44px;height:44px;border-radius:50%;border:1px solid #CFCBC0;background:#FFFFFF;font-size:22px;color:#1D2230;cursor:pointer">−</button>
+<span style="min-width:28px;text-align:center;font-size:20px;font-weight:700;font-variant-numeric:tabular-nums">{{groupSize}}</span>
+<button type="button" aria-label="More people" onClick="{{ groupUp }}" style="width:44px;height:44px;border-radius:50%;border:1px solid #CFCBC0;background:#FFFFFF;font-size:22px;color:#1D2230;cursor:pointer">+</button>
+</div>
+</div>
+<dl style="margin:0;display:flex;flex-direction:column;gap:12px;font-size:16px;font-variant-numeric:tabular-nums">
+<div style="display:flex;justify-content:space-between;gap:12px"><dt>Turf booking</dt><dd style="margin:0">{{total}}</dd></div>
+<div style="display:flex;justify-content:space-between;gap:12px"><dt>Your share</dt><dd style="margin:0">{{share}}</dd></div>
+<div style="display:flex;justify-content:space-between;gap:12px"><dt>Chalo fee (example: 5%)</dt><dd style="margin:0">{{fee}}</dd></div>
+<div style="display:flex;justify-content:space-between;gap:12px;padding-top:12px;border-top:1px solid #E3E0D6;font-size:20px;font-weight:800"><dt>You pay</dt><dd style="margin:0">{{pay}}</dd></div>
+</dl>
+<p style="margin:0;font-size:14px;line-height:1.5;color:#0A5A4A;background:#E4F0EB;border-radius:10px;padding:10px 12px">The host pays nothing up front. If fewer people pay than needed, the plan doesn't go ahead and everyone is refunded.</p>
+</div>
+</section>
+
+<!-- HABIT -->
+<section style="background:#FFFFFF;border-top:1px solid #E3E0D6;border-bottom:1px solid #E3E0D6">
+<div style="max-width:1120px;margin:0 auto;padding:72px 24px;display:flex;flex-direction:column;gap:32px;box-sizing:border-box">
+<h2 style="margin:0;font-family:'Bricolage Grotesque','DM Sans',system-ui,sans-serif;font-weight:800;font-size:38px;letter-spacing:-0.02em;max-width:720px;text-wrap:balance">So it doesn't stop at one chai</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;align-items:start">
+<div style="min-width:0;background:#F6F5F1;border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:12px">
+<h3 style="margin:0;font-size:20px;font-family:'Bricolage Grotesque','DM Sans',system-ui,sans-serif;font-weight:800">Repeat any plan</h3>
+<p style="margin:0;font-size:16px;line-height:1.5;color:#3B4050">Turn a good Saturday into a weekly one. Regulars get a reminder, new people can slot in.</p>
+<span style="align-self:flex-start;padding:8px 14px;border-radius:999px;background:#CDEBD8;font-size:14px;font-weight:700">Football · every Saturday, 6 AM</span>
+</div>
+<div style="min-width:0;background:#F6F5F1;border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:12px">
+<h3 style="margin:0;font-size:20px;font-family:'Bricolage Grotesque','DM Sans',system-ui,sans-serif;font-weight:800">Follow what you like</h3>
+<p style="margin:0;font-size:16px;line-height:1.5;color:#3B4050">Pick a few interests and the feed leads with plans that fit, from people outside your usual circle.</p>
+<div style="display:flex;flex-wrap:wrap;gap:8px">
+<span style="padding:8px 14px;border-radius:999px;background:#DCD4F7;font-size:14px;font-weight:700">Gaming</span>
+<span style="padding:8px 14px;border-radius:999px;background:#CFE5F5;font-size:14px;font-weight:700">Trails and walks</span>
+<span style="padding:8px 14px;border-radius:999px;background:#FFE3B8;font-size:14px;font-weight:700">Chai</span>
+</div>
+</div>
+<div style="min-width:0;background:#F6F5F1;border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:12px">
+<h3 style="margin:0;font-size:20px;font-family:'Bricolage Grotesque','DM Sans',system-ui,sans-serif;font-weight:800">People you've met</h3>
+<p style="margin:0;font-size:16px;line-height:1.5;color:#3B4050">After a plan, the people you enjoyed stay in one list. Invite them to the next one in a tap.</p>
+<div style="display:flex;align-items:center;padding-right:8px">
+<span style="width:36px;height:36px;margin-right:-8px;border-radius:50%;background:#FFD9C9;border:2px solid #F6F5F1;display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;box-sizing:border-box">A</span>
+<span style="width:36px;height:36px;margin-right:-8px;border-radius:50%;background:#D6ECE4;border:2px solid #F6F5F1;display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;box-sizing:border-box">V</span>
+<span style="width:36px;height:36px;margin-right:-8px;border-radius:50%;background:#E3DCFA;border:2px solid #F6F5F1;display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;box-sizing:border-box">S</span>
+<span style="width:36px;height:36px;margin-right:-8px;border-radius:50%;background:#FFF0B8;border:2px solid #F6F5F1;display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;box-sizing:border-box">K</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- LAUNCH + VENUES -->
+<section id="launch" style="max-width:1120px;margin:0 auto;padding:72px 24px;display:flex;flex-wrap:wrap;gap:48px;align-items:flex-start;box-sizing:border-box">
+<div style="flex:1 1 440px;min-width:0;display:flex;flex-direction:column;gap:20px">
+<h2 style="margin:0;font-family:'Bricolage Grotesque','DM Sans',system-ui,sans-serif;font-weight:800;font-size:38px;letter-spacing:-0.02em;text-wrap:balance">Opening one campus at a time</h2>
+<p style="margin:0;font-size:17px;line-height:1.55;color:#4A4F5E;max-width:540px">A feed with three plans feels empty. So we start at one hostel-heavy campus, and our own hosts post the first 30 to 50 plans before anyone else arrives. Want Chalo at your college? Join the list with your college email.</p>
+<div style="display:flex;flex-direction:column;gap:8px;max-width:480px">
+<label for="wait-email" style="font-size:13px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;color:#4A4F5E">College email</label>
+<div style="display:flex;flex-wrap:wrap;gap:10px">
+<input id="wait-email" type="email" value="{{ email }}" onInput="{{ onEmail }}" placeholder="you@yourcollege.edu" style="flex:1 1 220px;min-width:0;min-height:52px;border-radius:12px;border:1px solid #CFCBC0;padding:0 14px;font-size:16px;color:#1D2230;background:#FFFFFF;box-sizing:border-box">
+<button type="button" onClick="{{ joinList }}" style="min-height:52px;padding:0 24px;border-radius:12px;border:0;background:{{accent}};color:#FFFFFF;font-size:16px;font-weight:700;cursor:pointer">Join the list</button>
+</div>
+<sc-if value="{{ hasWaitError }}" hint-placeholder-val="{{ false }}"><p role="alert" style="margin:0;font-size:14px;color:#B3261E;font-weight:500">{{waitError}}</p></sc-if>
+<sc-if value="{{ waitDone }}" hint-placeholder-val="{{ false }}"><p role="status" style="margin:0;font-size:15px;color:#0A5A4A;font-weight:700">You're on the list. We'll write when your campus opens.</p></sc-if>
+<p style="margin:0;font-size:13px;color:#4A4F5E">Sample form. Nothing is saved in this preview.</p>
+</div>
+</div>
+<div style="flex:1 1 360px;min-width:0;max-width:480px;background:#1D2230;color:#FFFFFF;border-radius:22px;padding:28px;display:flex;flex-direction:column;gap:16px;box-sizing:border-box">
+<h3 style="margin:0;font-family:'Bricolage Grotesque','DM Sans',system-ui,sans-serif;font-weight:800;font-size:26px;line-height:1.15">Run a café, turf or gaming zone near campus?</h3>
+<p style="margin:0;font-size:16px;line-height:1.5;color:#D5D8E0">Fill your quiet hours with groups of students who arrive together and book in one go.</p>
+<ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:16px">
+<li style="display:flex;gap:10px;align-items:flex-start"><svg style="flex:none;margin-top:3px" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="8" fill="#FFE08A"/><path d="M4.5 8.3l2.2 2.2 4.8-4.8" stroke="#1D2230" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Groups book and pay through one host-free split</li>
+<li style="display:flex;gap:10px;align-items:flex-start"><svg style="flex:none;margin-top:3px" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="8" fill="#FFE08A"/><path d="M4.5 8.3l2.2 2.2 4.8-4.8" stroke="#1D2230" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Student offers appear right on plans at your venue</li>
+</ul>
+<p style="margin:0;font-size:14px;color:#D5D8E0">Venue partnerships open once the first campus is live.</p>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer style="border-top:1px solid #E3E0D6">
+<div style="max-width:1120px;margin:0 auto;padding:32px 24px 40px;display:flex;flex-wrap:wrap;gap:16px 32px;justify-content:space-between;align-items:center;font-size:14px;color:#4A4F5E;box-sizing:border-box">
+<span>Chalo Campus · for college students aged 18 and over · sample preview</span>
+<nav style="display:flex;flex-wrap:wrap;gap:4px 20px">
+<a href="#safety" style="display:inline-flex;align-items:center;min-height:44px">Community rules</a>
+<a href="#safety" style="display:inline-flex;align-items:center;min-height:44px">Report a problem</a>
+<a href="#safety" style="display:inline-flex;align-items:center;min-height:44px">Privacy</a>
+<a href="#safety" style="display:inline-flex;align-items:center;min-height:44px">Grievance officer</a>
+</nav>
+</div>
+</footer>
+
+<sc-if value="{{ hasToast }}" hint-placeholder-val="{{ false }}">
+<div role="status" style="position:fixed;left:0;right:0;bottom:24px;display:flex;justify-content:center;padding:0 16px;pointer-events:none">
+<div style="background:#1D2230;color:#FFFFFF;padding:14px 20px;border-radius:14px;font-size:15px;max-width:480px;box-shadow:0 8px 24px rgba(29,34,48,0.25)">{{toast}}</div>
+</div>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#D2452B","options":["#D2452B","#2B5FCF","#6B46C9"]},"$preview":{"width":1280,"height":4300}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {
+      filter: 'All',
+      joined: {},
+      open: {},
+      reported: {},
+      nextId: 1,
+      groupSize: 10,
+      email: '',
+      waitError: '',
+      waitDone: false,
+      toast: '',
+      formError: '',
+      form: { title: '', cat: 'Chai', time: 'Today · 5:00 PM', venue: 'Tea stall by the gate', spots: 4, cost: 0, women: false, approve: false },
+      plans: [
+        { id: 'p1', title: 'Chai after the last lecture', cat: 'Chai', when: 'Today · 5:00 PM', where: 'Tea stall by the main gate', spots: 5,
+          going: [{ n: 'Ananya', d: 'Architecture' }, { n: 'Vikram', d: 'Economics' }, { n: 'Sana', d: 'Physics' }],
+          host: { n: 'Rohan', d: 'Mechanical', r: '4.8 rating' }, cost: 0, approve: false, women: false, weekly: false, late: false },
+        { id: 'p2', title: '5-a-side football, all levels welcome', cat: 'Sports', when: 'Sat · 6:00 AM', where: 'Turf near campus', spots: 9,
+          going: [{ n: 'Karthik', d: 'Civil' }, { n: 'Priya', d: 'Psychology' }, { n: 'Neil', d: 'Mechanical' }, { n: 'Tarun', d: 'Chemistry' }, { n: 'Rahul', d: 'Commerce' }, { n: 'Manav', d: 'Electronics' }],
+          host: { n: 'Imran', d: 'Computer Science', r: '4.9 rating' }, cost: 120, approve: false, women: false, weekly: true, late: false },
+        { id: 'p3', title: 'Board games at a quiet café', cat: 'Hangout', when: 'Sat · 4:00 PM', where: 'Café near campus', spots: 5,
+          going: [{ n: 'Zoya', d: 'Design' }, { n: 'Isha', d: 'English' }],
+          host: { n: 'Meera', d: 'Design', r: '4.9 rating' }, cost: 150, approve: true, women: true, weekly: false, late: false },
+        { id: 'p4', title: 'Valorant 5-stack, beginners welcome', cat: 'Gaming', when: 'Sun · 3:00 PM', where: 'Gaming lounge near campus', spots: 4,
+          going: [{ n: 'Manav', d: 'Electronics' }, { n: 'Lakshmi', d: 'Biotechnology' }],
+          host: { n: 'Dev', d: 'Computer Science', r: '4.7 rating' }, cost: 100, approve: false, women: false, weekly: false, late: false },
+        { id: 'p5', title: 'Cubbon Park morning walk', cat: 'Explore', when: 'Sun · 7:00 AM', where: 'Cubbon Park main gate', spots: 7,
+          going: [{ n: 'Lakshmi', d: 'Biotechnology' }],
+          host: { n: 'Kavya', d: 'Biotechnology', r: '4.8 rating' }, cost: 0, approve: false, women: false, weekly: false, late: false },
+        { id: 'p6', title: 'Friday night movie, group booking', cat: 'Movies', when: 'Fri · 7:15 PM', where: 'Mall or multiplex', spots: 5,
+          going: [{ n: 'Vikram', d: 'Economics' }, { n: 'Priya', d: 'Psychology' }, { n: 'Rahul', d: 'Commerce' }],
+          host: { n: 'Arjun', d: 'Civil', r: '4.6 rating' }, cost: 250, approve: false, women: false, weekly: false, late: false }
+      ]
+    };
+  }
+
+  flash(msg) {
+    this.setState({ toast: msg });
+    clearTimeout(this._toastTimer);
+    this._toastTimer = setTimeout(() => this.setState({ toast: '' }), 3200);
+  }
+
+  setForm(patch) {
+    this.setState({ form: Object.assign({}, this.state.form, patch) });
+  }
+
+  renderVals() {
+    const s = this.state;
+    const f = s.form;
+    const accent = this.props.accent ?? '#D2452B';
+    const INK = '#1D2230';
+    const AV = ['#FFD9C9', '#D6ECE4', '#E3DCFA', '#FFF0B8', '#D4E6F7', '#F8DCE2'];
+    const CAT = { Chai: '#FFE3B8', Sports: '#CDEBD8', Gaming: '#DCD4F7', Movies: '#F7D3D9', Explore: '#CFE5F5', Hangout: '#F5DCCB' };
+    const rupee = (v) => '₹' + v.toLocaleString('en-IN');
+    const chip = (label, on, pick) => ({
+      label, on, pick,
+      bg: on ? INK : '#FFFFFF',
+      fg: on ? '#FFFFFF' : INK,
+      bd: on ? INK : '#D9D5C9'
+    });
+
+    const TIMES = [
+      { l: 'Today · 5:00 PM', late: false }, { l: 'Today · 7:30 PM', late: false },
+      { l: 'Tomorrow · 4:00 PM', late: false }, { l: 'Sat · 6:00 AM', late: false },
+      { l: 'Sun · 8:30 PM', late: true }
+    ];
+    const VENUES = ['Campus canteen', 'Tea stall by the gate', 'Café near campus', 'Turf near campus', 'Gaming lounge near campus', 'Cubbon Park', 'Mall or multiplex'];
+    const COSTS = [0, 100, 150, 250];
+    const CATS = ['Chai', 'Sports', 'Gaming', 'Movies', 'Explore', 'Hangout'];
+
+    const catChips = CATS.map((c) => chip(c, f.cat === c, () => this.setForm({ cat: c })));
+    const timeChips = TIMES.map((t) => chip(t.l, f.time === t.l, () => this.setForm({ time: t.l })));
+    const venueChips = VENUES.map((v) => chip(v, f.venue === v, () => this.setForm({ venue: v })));
+    const costChips = COSTS.map((c) => chip(c === 0 ? 'Free' : rupee(c), f.cost === c, () => this.setForm({ cost: c })));
+    const timeObj = TIMES.find((t) => t.l === f.time);
+    const lateOn = !!(timeObj && timeObj.late);
+
+    const toggle = (label, hint, on, flip) => ({ label, hint, on, flip, track: on ? '#0E7561' : '#B9B5A8', knob: on ? '21px' : '3px' });
+    const toggles = [
+      toggle('Women-only plan', 'Only women can see and join', f.women, () => this.setForm({ women: !f.women })),
+      toggle('I approve who joins', 'Joiners send a request first', f.approve, () => this.setForm({ approve: !f.approve }))
+    ];
+
+    const filterNames = ['All', 'Chai', 'Sports', 'Gaming', 'Movies', 'Explore', 'Hangout', 'Women-only'];
+    const filters = filterNames.map((c) => chip(c, s.filter === c, () => this.setState({ filter: c })));
+
+    const visible = s.plans.filter((p) => s.filter === 'All' ? true : (s.filter === 'Women-only' ? p.women : p.cat === s.filter));
+    const plans = visible.map((p) => {
+      const mine = s.joined[p.id];
+      const left = p.spots - p.going.length - (mine === 'in' ? 1 : 0);
+      const full = left <= 0 && !mine;
+      const taken = p.spots - Math.max(left, 0);
+      const names = p.going.map((g) => ({ n: g.n, d: g.d }));
+      if (mine === 'in') names.push({ n: 'You', d: 'Your department' });
+      const avatars = names.slice(0, 4).map((g, i) => ({ ini: g.n.charAt(0).toUpperCase(), bg: AV[i % AV.length] }));
+      let btnLabel, btnBg, btnFg, btnBd;
+      if (mine === 'in') { btnLabel = "You're in. Tap to leave"; btnBg = '#E4F0EB'; btnFg = '#0A5A4A'; btnBd = '#0E7561'; }
+      else if (mine === 'req') { btnLabel = 'Requested. Tap to cancel'; btnBg = '#FFF3D1'; btnFg = '#6B4A00'; btnBd = '#E0B84A'; }
+      else if (full) { btnLabel = 'Plan is full'; btnBg = '#ECEAE3'; btnFg = '#4A4F5E'; btnBd = '#ECEAE3'; }
+      else if (p.approve) { btnLabel = 'Ask to join'; btnBg = INK; btnFg = '#FFFFFF'; btnBd = INK; }
+      else { btnLabel = p.cost > 0 ? 'Join · ' + rupee(p.cost) : 'Join'; btnBg = accent; btnFg = '#FFFFFF'; btnBd = accent; }
+      const isOpen = !!s.open[p.id];
+      const isReported = !!s.reported[p.id];
+      let joinNote = 'Group chat opens when you join.';
+      if (p.approve) joinNote = 'The host approves each request.';
+      if (mine === 'in') joinNote = 'Group chat is open. Share this plan with a friend.';
+      if (mine === 'req') joinNote = 'The host will answer soon.';
+      return {
+        id: p.id, title: p.title, cat: p.cat, catBg: CAT[p.cat] || '#EEF0F4',
+        when: p.when, where: p.where, late: p.late, weekly: p.weekly, women: p.women, approve: p.approve,
+        hostIni: p.host.n.charAt(0).toUpperCase(), hostName: p.host.n, hostDept: p.host.d, hostRating: p.host.r,
+        spotsText: full ? 'Full' : left + (left === 1 ? ' spot left' : ' spots left'),
+        fillPct: Math.round((taken / p.spots) * 100) + '%',
+        priceText: p.cost > 0 ? rupee(p.cost) + ' each' : 'Free · everyone pays for their own',
+        hasPrice: p.cost > 0,
+        avatars,
+        going: names,
+        open: isOpen,
+        whoLabel: isOpen ? 'Hide who\'s going' : 'See who\'s going (' + names.length + ')',
+        toggleOpen: () => this.setState({ open: Object.assign({}, s.open, { [p.id]: !isOpen }) }),
+        full,
+        cursor: full ? 'not-allowed' : 'pointer',
+        btnLabel, btnBg, btnFg, btnBd, joinNote,
+        onJoin: () => {
+          const j = Object.assign({}, s.joined);
+          if (j[p.id]) { delete j[p.id]; this.setState({ joined: j }); this.flash('Done. You left the plan.'); }
+          else if (p.approve) { j[p.id] = 'req'; this.setState({ joined: j }); this.flash('Request sent to ' + p.host.n + '.'); }
+          else { j[p.id] = 'in'; this.setState({ joined: j }); this.flash("You're in. The plan's group chat is open."); }
+        },
+        reported: isReported,
+        notReported: !isReported,
+        onReport: () => this.setState({ reported: Object.assign({}, s.reported, { [p.id]: true }) })
+      };
+    });
+
+    const safety = [
+      { title: 'Before you go', items: [
+        { t: 'Only verified students from your college can see plans' },
+        { t: 'Real names and photos, no anonymous profiles' },
+        { t: 'Public places only, picked from a list' },
+        { t: 'See exactly who is going before you join' },
+        { t: 'Hosts can approve joiners, and women-only plans are one filter away' }
+      ] },
+      { title: 'While you are out', items: [
+        { t: 'Groups of 3 or more, no one-on-one plans with strangers' },
+        { t: 'Share your plan with a friend in one tap' },
+        { t: 'An SOS button that alerts a trusted contact' },
+        { t: 'A check-in an hour in: "Everything okay?"' },
+        { t: 'Plans after 8 PM need a verified host' }
+      ] },
+      { title: 'After', items: [
+        { t: 'Private ratings for hosts and joiners' },
+        { t: 'Report or block in two taps, from any profile, plan or chat' },
+        { t: 'Every report gets a human look, serious ones first' },
+        { t: 'Warnings, then suspensions, then removal for repeat offenders' },
+        { t: 'Student moderators help out while we are small' }
+      ] }
+    ];
+
+    const steps = [
+      { n: 1, t: 'The plan fills up.' },
+      { n: 2, t: 'Everyone pays their share into hold.' },
+      { n: 3, t: 'The host confirms the booking.' },
+      { n: 4, t: 'The venue gets paid. If the plan falls through, everyone is refunded.' }
+    ];
+
+    const total = 1200;
+    const n = s.groupSize;
+    const share = Math.ceil(total / n);
+    const fee = Math.ceil(share * 0.05);
+
+    const totalPeople = f.spots + 1;
+    return {
+      accent,
+      trust: [{ text: 'College email only' }, { text: 'Public places only' }, { text: 'Groups of 3 or more' }],
+      form: f,
+      titleValue: f.title,
+      onTitle: (e) => this.setForm({ title: e.target.value }),
+      hasFormError: s.formError !== '',
+      formError: s.formError,
+      catChips, timeChips, venueChips, costChips, lateOn, toggles,
+      spotsDown: () => this.setForm({ spots: Math.max(2, f.spots - 1) }),
+      spotsUp: () => this.setForm({ spots: Math.min(12, f.spots + 1) }),
+      groupNote: 'You plus ' + f.spots + ' = ' + totalPeople + ' people. Groups of 3 or more only.',
+      costNote: f.cost > 0 ? 'Everyone pays their share into Chalo. You never front the money.' : 'No booking. Everyone pays for their own.',
+      submitPlan: () => {
+        if (!f.title.trim()) { this.setState({ formError: 'Give your plan a name first.' }); return; }
+        const id = 'n' + s.nextId;
+        const plan = {
+          id, title: f.title.trim(), cat: f.cat, when: f.time, where: f.venue, spots: f.spots, going: [],
+          host: { n: 'You', d: 'Your department', r: 'New host' },
+          cost: f.cost, approve: f.approve, women: f.women, weekly: false, late: lateOn
+        };
+        this.setState({
+          plans: [plan].concat(s.plans), nextId: s.nextId + 1, filter: 'All', formError: '',
+          form: Object.assign({}, f, { title: '' })
+        });
+        this.flash('Plan posted. It is at the top of Plans on your campus.');
+      },
+      filters, plans, noPlans: plans.length === 0,
+      safety, steps,
+      groupSize: n,
+      groupDown: () => this.setState({ groupSize: Math.max(4, n - 1) }),
+      groupUp: () => this.setState({ groupSize: Math.min(14, n + 1) }),
+      total: rupee(total), share: rupee(share), fee: rupee(fee), pay: rupee(share + fee),
+      email: s.email,
+      onEmail: (e) => this.setState({ email: e.target.value, waitError: '', waitDone: false }),
+      hasWaitError: s.waitError !== '',
+      waitError: s.waitError,
+      waitDone: s.waitDone,
+      joinList: () => {
+        if (!/^\S+@\S+\.\S+$/.test(s.email.trim())) { this.setState({ waitError: 'Enter your college email, like you@yourcollege.edu.', waitDone: false }); return; }
+        this.setState({ waitError: '', waitDone: true });
+      },
+      hasToast: s.toast !== '',
+      toast: s.toast
+    };
+  }
+}
+</script>
+</body>
+</html>
